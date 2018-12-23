@@ -6,7 +6,6 @@ class twInfo:
                 self.text = text
 
 # Twitter User timeline (20 last)
-# El Gallo NetFlix recent tweets
 def userTwitterTimeline(client, user):
         tweetList = []
         tweets = client.user_timeline(user)
@@ -18,3 +17,15 @@ def userTwitterTimeline(client, user):
                         twi.text = tweet.text
                         tweetList.append(twi)                                
         return tweetList
+
+def getUserLists(client,user):
+        usrLst = []
+        twlists = client.lists_all(user)
+        if(twlists):
+                for names in twlists:
+                        if(names.name.endswith("_")):
+                                members = client.list_members(user,names.slug)
+                                if(members):
+                                        for memb in members:
+                                                usrLst.append(memb.screen_name)
+        return usrLst
