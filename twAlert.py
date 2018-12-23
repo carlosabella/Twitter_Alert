@@ -2,14 +2,17 @@ import twitterAPI
 import twAlertHandler
 import emailAPI
 import json
+import os
 
 tclient = twitterAPI.api
-
 twSendList = []
-twAccounts = json.load(open('alertHelper.json'))
+#Get user lists for alert
+# lists for alert, those which last character is "_"
+twAccounts = twAlertHandler.getUserLists(tclient,os.environ.get('USER_DEFAULT'))
+
 if(twAccounts):
-    for jsonStr in twAccounts:
-        userList = twAlertHandler.userTwitterTimeline(tclient,jsonStr['id'])
+    for twUser in twAccounts:
+        userList = twAlertHandler.userTwitterTimeline(tclient,twUser)
         if(userList):
            twSendList.append(userList)
 for indx,items in enumerate(twSendList):
