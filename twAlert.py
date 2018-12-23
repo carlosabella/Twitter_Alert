@@ -2,12 +2,13 @@ import twitterAPI
 import twAlertHandler
 import emailAPI
 import json
+import os
 
 tclient = twitterAPI.api
 twSendList = []
 #Get user lists for alert
 # lists for alert, those which last character is "_"
-twAccounts = twAlertHandler.getUserLists(tclient,"@abella_carlos")
+twAccounts = twAlertHandler.getUserLists(tclient,os.environ.get('USER_DEFAULT'))
 #twAccounts = json.load(open('alertHelper.json'))
 if(twAccounts):
     for jsonStr in twAccounts:
