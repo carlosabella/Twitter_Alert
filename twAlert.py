@@ -9,11 +9,10 @@ twSendList = []
 #Get user lists for alert
 # lists for alert, those which last character is "_"
 twAccounts = twAlertHandler.getUserLists(tclient,os.environ.get('USER_DEFAULT'))
-#twAccounts = json.load(open('alertHelper.json'))
+
 if(twAccounts):
-    for jsonStr in twAccounts:
-        userList = twAlertHandler.userTwitterTimeline(tclient,jsonStr)
-        #userList = twAlertHandler.userTwitterTimeline(tclient,jsonStr['id'])
+    for twUser in twAccounts:
+        userList = twAlertHandler.userTwitterTimeline(tclient,twUser)
         if(userList):
            twSendList.append(userList)
 for indx,items in enumerate(twSendList):
