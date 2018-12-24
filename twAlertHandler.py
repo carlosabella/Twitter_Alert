@@ -1,9 +1,10 @@
 from datetime import date
 # Return class
 class twInfo:
-        def __init___(self,idStr,idName,text, created):
+        def __init___(self,idStr,idName,name,text, created):
                 self.idStr = idStr
                 self.idName = idName
+                self.name = name
                 self.text = text
                 self.created = created
 
@@ -15,10 +16,11 @@ def userTwitterTimeline(client, user):
                 for tweet in tweets:
                         twi = type('twInfo', (), {})()
                         twi.idName = user
+                        twi.name = tweet.author.name
                         twi.idStr = tweet.id_str
                         twi.text = tweet.text
                         twi.created = tweet.created_at
-                        tweetList.append(twi)                                
+                        tweetList.append(twi)                            
         return tweetList
 
 def getUserLists(client,user):
