@@ -16,7 +16,9 @@ if(twAccounts):
         if(userList):
            twSendList.append(userList)
 for indx,items in enumerate(twSendList):
+    date = items[indx].created.date()
+    us = items[indx].idName
     content = ""
-    for idx, itm in enumerate(items):
-        content += items[idx].text + "\r\n \r\n"
-    emailAPI.sendEmail(content)
+    for itm in items:
+        content += itm.text + "\r\n \r\n"
+    emailAPI.sendEmail(content,date, us)
