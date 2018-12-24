@@ -2,10 +2,11 @@ import sendgrid
 import os
 from sendgrid.helpers.mail import *
 
+emailaddress = os.environ.get('EMAIL_DEFAULT')
 sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
-from_email = Email("carlosg.abella@gmail.com")
+from_email = Email(emailaddress)
 subject = "Novedades Twit Alert"
-to_email = Email("carlosg.abella@gmail.com")
+to_email = Email(emailaddress)
 #content = Content("text/plain", "Contenido del email")
 
 def sendEmail(cont):
