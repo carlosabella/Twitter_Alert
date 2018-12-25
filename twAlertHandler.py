@@ -10,7 +10,7 @@ class twInfo:
         self.created = created
 
 # Twitter User timeline (20 last)
-def userTwitterTimeline(client, user):
+def twitterTimeline(client, user):
     tweetList = []
     tweets = client.user_timeline(user)
     if(tweets):
@@ -24,6 +24,7 @@ def userTwitterTimeline(client, user):
                 tweetList.append(twi)                            
     return tweetList
 
+# this method returns members in the first list with "_" suffix
 def getUserLists(client,user):
     usrLst = []
     twlists = client.lists_all(user)
@@ -34,4 +35,5 @@ def getUserLists(client,user):
                 if(members):
                     for memb in members:
                         usrLst.append(memb.screen_name)
+                break
     return usrLst
