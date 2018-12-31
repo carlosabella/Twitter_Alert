@@ -1,2 +1,3 @@
 sendgrid
 tweepy
+psycopg2
