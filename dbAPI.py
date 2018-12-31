@@ -17,3 +17,10 @@ def getUsMembLastPostInfo():
         cur.close()
         dbconnection.conn.close()
     return userMap, membLastTwitMap
+
+def updateLastTwitt(membersList):
+    cur = dbconnection.conn.cursor()
+    for key,value in membersList:
+        cur.execute("UPDATE members set = %s lasttwit WHERE twmember = %s",(value, key))    
+    dbconnection.conn.commit()
+    cur.close()
