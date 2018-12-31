@@ -25,7 +25,8 @@ if(userMap and membLastTwitMap):
                 content += itm.created.date().__str__() + ": \n" + itm.text + "\n \n"
             emailAPI.sendEmail(content,date.__str__(), memberName, toemail)
 
-
+# function deprecated
+#TO-DO delete function
 def defaultEmailSend():
     twSendList = []
     #Get user lists for alert
