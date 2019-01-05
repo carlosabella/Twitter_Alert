@@ -10,6 +10,7 @@ userMap, membLastTwitMap = dbAPI.getUsMembLastPostInfo()
 
 if(userMap and membLastTwitMap):
     twSendList = []
+    twUpdateLastTwitt = {}
     for member, lasttw in membLastTwitMap.items():
         memberTimelineList = twAlertHandler.twitterTimeline(tclient,member,lasttw)
         if(memberTimelineList):
@@ -20,12 +21,16 @@ if(userMap and membLastTwitMap):
             date = date.today()
             memberName = items[indx].name
             toemail = userMap.get(items[indx].twuser)
-            content = ""
-            for itm in items:
+            content = ""        
+            twUpdateLastTwitt[items[indx].idName] = items[0].idStr
+            for i,itm in enumerate(items):
                 content += itm.created.date().__str__() + ": \n" + itm.text + "\n \n"
             emailAPI.sendEmail(content,date.__str__(), memberName, toemail)
+        if(twUpdateLastTwitt):
+            dbAPI.updateLastTwitt(twUpdateLastTwitt)
 
-
+# function deprecated
+#TO-DO delete function
 def defaultEmailSend():
     twSendList = []
     #Get user lists for alert

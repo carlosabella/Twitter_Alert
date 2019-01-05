@@ -10,7 +10,7 @@ class twInfo:
         self.text = text
         self.created = created
 
-# Twitter User timeline (20 last)
+# Twitter User timeline
 def twitterTimeline(client, member, lasttw):
     tweetList = []
     tweets = client.user_timeline(member.split(':')[1],since_id=lasttw)
@@ -27,6 +27,7 @@ def twitterTimeline(client, member, lasttw):
                 tweetList.append(twi)                        
     return tweetList
 
+# function deprecated. TO - DO in the future delete function
 # this method returns members in the first list with "_" suffix
 def getUserLists(client,user):
     usrLst = []
