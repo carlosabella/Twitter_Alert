@@ -21,12 +21,10 @@ if(userMap and membLastTwitMap):
             date = date.today()
             memberName = items[indx].name
             toemail = userMap.get(items[indx].twuser)
-            content = ""
-            lastId = len(items)-1
+            content = ""        
+            twUpdateLastTwitt[items[indx].idName] = items[0].idStr
             for i,itm in enumerate(items):
                 content += itm.created.date().__str__() + ": \n" + itm.text + "\n \n"
-                if(i == lastId):
-                    twUpdateLastTwitt[items[indx].twuser] = itm.idStr
             emailAPI.sendEmail(content,date.__str__(), memberName, toemail)
         if(twUpdateLastTwitt):
             dbAPI.updateLastTwitt(twUpdateLastTwitt)
