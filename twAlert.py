@@ -16,7 +16,6 @@ if(userMap and membLastTwitMap):
         if(memberTimelineList):
             twSendList.append(memberTimelineList)
     if(twSendList):
-        #for indx,items in enumerate(twSendList):
         for items in twSendList:
             # Date of email is sent
             date = date.today()
