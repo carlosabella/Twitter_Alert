@@ -16,13 +16,14 @@ if(userMap and membLastTwitMap):
         if(memberTimelineList):
             twSendList.append(memberTimelineList)
     if(twSendList):
-        for indx,items in enumerate(twSendList):
+        #for indx,items in enumerate(twSendList):
+        for items in twSendList:
             # Date of email is sent
             date = date.today()
-            memberName = items[indx].name
-            toemail = userMap.get(items[indx].twuser)
+            memberName = items[0].name
+            toemail = userMap.get(items[0].twuser)
             content = ""        
-            twUpdateLastTwitt[items[indx].idName] = items[0].idStr
+            twUpdateLastTwitt[items[0].idName] = items[0].idStr
             for i,itm in enumerate(items):
                 content += itm.created.date().__str__() + ": \n" + itm.text + "\n \n"
             emailAPI.sendEmail(content,date.__str__(), memberName, toemail)
